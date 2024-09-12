@@ -1,3 +1,10 @@
-#include "engine.h"
+#include <torch/torch.h>
 
-int main(int arc, const char** argv) { return 0; }
+#include <cstdint>
+#include <iostream>
+
+auto main(std::int32_t arc, const char** argv) -> int {
+  std::cout << torch::eye(10) << "\n";
+
+  return 0;
+}

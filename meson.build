@@ -11,17 +11,6 @@ includes = []
 
 deps += [dependency('torch', version: '2.2.0', modules: 'torch')]
 
-files += [
-    'src/engine.cc',
-
-    'src/damath/board.cc',
-
-    'src/mcts/node.cc',
-
-    'src/neural/network.cc',
-
-]
-
 includes += ['src']
 
 executable(

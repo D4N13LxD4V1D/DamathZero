@@ -1,2 +1,5 @@
 .vscode
 build*
+
+# clangd stores information on the .cache/clangd folder
+.cache/

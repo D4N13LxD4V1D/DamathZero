@@ -1,6 +1,11 @@
 ---
-Language: Cpp
 BasedOnStyle: Google
-DerivePointerAlignment: false
----
-Language: Proto
+AllowShortBlocksOnASingleLine: 'false'
+AllowShortIfStatementsOnASingleLine: Never
+AllowShortLoopsOnASingleLine: 'false'
+DerivePointerAlignment: 'false'
+ExperimentalAutoDetectBinPacking: 'false'
+FixNamespaceComments: 'true'
+InsertBraces: 'true'
+PointerAlignment: Left
+
