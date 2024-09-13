@@ -15,7 +15,7 @@ cpp_args = [
     '-Wzero-as-null-pointer-constant',
     '-Wdelete-non-virtual-dtor',
     '--system-header-prefix=torch/',
-    '--system-header-prefix=sfml/',
+    '--system-header-prefix=SFML/',
 ]
 
 add_project_arguments(
