@@ -3,63 +3,76 @@
 namespace DamathZero::Game {
 
 Board::Board() {
-  pieces_[5][2] = std::make_unique<Pawn>(Player::White, 0);
-  pieces_[2][5] = std::make_unique<Pawn>(Player::Black, 0);
+  cells_[0 + 8 * 0] = Operation::Times;
+  cells_[2 + 8 * 0] = Operation::Divide;
+  cells_[4 + 8 * 0] = Operation::Minus;
+  cells_[6 + 8 * 0] = Operation::Plus;
 
-  pieces_[3][2] = std::make_unique<Dama>(Player::White, -1);
-  pieces_[4][5] = std::make_unique<Dama>(Player::Black, -1);
+  cells_[1 + 8 * 1] = Operation::Divide;
+  cells_[3 + 8 * 1] = Operation::Times;
+  cells_[5 + 8 * 1] = Operation::Plus;
+  cells_[7 + 8 * 1] = Operation::Minus;
 
-  pieces_[7][2] = std::make_unique<Dama>(Player::White, 2);
-  pieces_[0][5] = std::make_unique<Dama>(Player::Black, 2);
+  cells_[0 + 8 * 2] = Operation::Minus;
+  cells_[2 + 8 * 2] = Operation::Plus;
+  cells_[4 + 8 * 2] = Operation::Times;
+  cells_[6 + 8 * 2] = Operation::Divide;
 
-  pieces_[1][2] = std::make_unique<Pawn>(Player::White, -3);
-  pieces_[6][5] = std::make_unique<Pawn>(Player::Black, -3);
+  cells_[1 + 8 * 3] = Operation::Plus;
+  cells_[3 + 8 * 3] = Operation::Minus;
+  cells_[5 + 8 * 3] = Operation::Divide;
+  cells_[7 + 8 * 3] = Operation::Times;
 
-  pieces_[4][1] = std::make_unique<Pawn>(Player::White, 4);
-  pieces_[3][6] = std::make_unique<Pawn>(Player::Black, 4);
+  cells_[0 + 8 * 4] = Operation::Times;
+  cells_[2 + 8 * 4] = Operation::Divide;
+  cells_[4 + 8 * 4] = Operation::Minus;
+  cells_[6 + 8 * 4] = Operation::Plus;
 
-  pieces_[2][1] = std::make_unique<Dama>(Player::White, -5);
-  pieces_[5][6] = std::make_unique<Dama>(Player::Black, -5);
+  cells_[1 + 8 * 5] = Operation::Divide;
+  cells_[3 + 8 * 5] = Operation::Times;
+  cells_[5 + 8 * 5] = Operation::Plus;
+  cells_[7 + 8 * 5] = Operation::Minus;
 
-  pieces_[6][1] = std::make_unique<Dama>(Player::White, 6);
-  pieces_[1][6] = std::make_unique<Dama>(Player::Black, 6);
+  cells_[0 + 8 * 6] = Operation::Minus;
+  cells_[2 + 8 * 6] = Operation::Plus;
+  cells_[4 + 8 * 6] = Operation::Times;
+  cells_[6 + 8 * 6] = Operation::Divide;
 
-  pieces_[0][1] = std::make_unique<Pawn>(Player::White, -7);
-  pieces_[7][6] = std::make_unique<Pawn>(Player::Black, -7);
+  cells_[1 + 8 * 7] = Operation::Plus;
+  cells_[3 + 8 * 7] = Operation::Minus;
+  cells_[5 + 8 * 7] = Operation::Divide;
+  cells_[7 + 8 * 7] = Operation::Times;
 
-  pieces_[5][0] = std::make_unique<Pawn>(Player::White, 8);
-  pieces_[2][7] = std::make_unique<Pawn>(Player::Black, 8);
+  cells_[0 + 8 * 0].SetPiece({Piece::Color::Blue, 2});
+  cells_[2 + 8 * 0].SetPiece({Piece::Color::Blue, -5});
+  cells_[4 + 8 * 0].SetPiece({Piece::Color::Blue, 8});
+  cells_[6 + 8 * 0].SetPiece({Piece::Color::Blue, -11});
 
-  pieces_[3][0] = std::make_unique<Pawn>(Player::White, -9);
-  pieces_[4][7] = std::make_unique<Pawn>(Player::Black, -9);
+  cells_[1 + 8 * 1].SetPiece({Piece::Color::Blue, -7});
+  cells_[3 + 8 * 1].SetPiece({Piece::Color::Blue, 10});
+  cells_[5 + 8 * 1].SetPiece({Piece::Color::Blue, -3});
+  cells_[7 + 8 * 1].SetPiece({Piece::Color::Blue, 0});
 
-  pieces_[7][0] = std::make_unique<Dama>(Player::White, 10);
-  pieces_[0][7] = std::make_unique<Dama>(Player::Black, 10);
+  cells_[0 + 8 * 2].SetPiece({Piece::Color::Blue, 4});
+  cells_[2 + 8 * 2].SetPiece({Piece::Color::Blue, -1});
+  cells_[4 + 8 * 2].SetPiece({Piece::Color::Blue, 6});
+  cells_[6 + 8 * 2].SetPiece({Piece::Color::Blue, -9});
 
-  pieces_[1][0] = std::make_unique<Dama>(Player::White, -11);
-  pieces_[6][7] = std::make_unique<Dama>(Player::Black, -11);
+  cells_[1 + 8 * 5].SetPiece({Piece::Color::Red, -9});
+  cells_[3 + 8 * 5].SetPiece({Piece::Color::Red, 6});
+  cells_[5 + 8 * 5].SetPiece({Piece::Color::Red, -1});
+  cells_[7 + 8 * 5].SetPiece({Piece::Color::Red, 4});
+
+  cells_[0 + 8 * 6].SetPiece({Piece::Color::Red, 0});
+  cells_[2 + 8 * 6].SetPiece({Piece::Color::Red, -3});
+  cells_[4 + 8 * 6].SetPiece({Piece::Color::Red, 10});
+  cells_[6 + 8 * 6].SetPiece({Piece::Color::Red, -7});
+
+  cells_[1 + 8 * 7].SetPiece({Piece::Color::Red, -11});
+  cells_[3 + 8 * 7].SetPiece({Piece::Color::Red, 8});
+  cells_[5 + 8 * 7].SetPiece({Piece::Color::Red, -5});
+  cells_[7 + 8 * 7].SetPiece({Piece::Color::Red, 2});
 }
-
-Operator operators[8][8] = {
-    {Operator::Multiply, Operator::None, Operator::Divide, Operator::None,
-     Operator::None, Operator::None, Operator::Plus, Operator::None},
-    {Operator::None, Operator::Divide, Operator::None, Operator::Multiply,
-     Operator::None, Operator::Plus, Operator::None, Operator::None},
-    {Operator::None, Operator::None, Operator::Plus, Operator::None,
-     Operator::Multiply, Operator::None, Operator::Divide, Operator::None},
-    {Operator::None, Operator::Plus, Operator::None, Operator::None,
-     Operator::None, Operator::Multiply, Operator::None, Operator::Divide},
-    {Operator::Multiply, Operator::None, Operator::Divide, Operator::None,
-     Operator::None, Operator::None, Operator::Plus, Operator::None},
-    {Operator::None, Operator::Divide, Operator::None, Operator::Multiply,
-     Operator::None, Operator::Plus, Operator::None, Operator::None},
-    {Operator::None, Operator::None, Operator::Plus, Operator::None,
-     Operator::Multiply, Operator::None, Operator::Divide, Operator::None},
-    {Operator::None, Operator::Plus, Operator::None, Operator::None,
-     Operator::None, Operator::Multiply, Operator::None, Operator::Divide},
-};
-
-auto Board::GetOperator(int x, int y) -> Operator { return operators[x][y]; }
 
 Damath::Damath() {}
 

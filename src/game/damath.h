@@ -1,53 +1,70 @@
 #pragma once
 
-#include <memory>
+#include <array>
+#include <cstdint>
+#include <optional>
 
 namespace DamathZero::Game {
 
-enum class Player { White, Black };
-enum class Operator { Plus, Minus, Multiply, Divide, None };
-
-class Piece {
-  Player owner_;
-  int value_ = 0;
-
- public:
-  Piece(Player owner, int value = 0) : owner_(owner), value_(value) {}
-
-  auto owner() -> Player* { return &owner_; }
-  auto value() -> int* { return &value_; }
+enum class Operation {
+  Plus,
+  Minus,
+  Times,
+  Divide,
 };
 
-class Pawn : public Piece {
- public:
-  Pawn(Player owner, int value = 0) : Piece(owner, value) {}
+struct Piece {
+  enum class Type : uint8_t {
+    Dama,
+    Pawn,
+  };
+
+  enum class Color : uint8_t {
+    Red,
+    Blue,
+  };
+
+  int value;
+  Type type = Type::Pawn;
+  Color color;
+
+  Piece(Color color, int value) : value(value), color(color) {}
 };
 
-class Dama : public Piece {
- public:
-  Dama(Player owner, int value = 0) : Piece(owner, value) {}
+struct Cell {
+  std::optional<Piece> piece;
+  std::optional<Operation> op;
+
+  Cell(Operation op) : op(op) {}
+  Cell() {}
+
+  auto SetPiece(Piece value) { piece = value; }
 };
 
 class Board {
-  std::unique_ptr<Piece> pieces_[8][8];
-  Player currentPlayer_ = Player::White;
-
  public:
   Board();
 
-  auto GetOperator(int x, int y) -> Operator;
+  auto GetOperation(int x, int y) -> std::optional<Operation> {
+    return cells_.at(x + y * 8).op;
+  }
 
-  auto pieces() -> std::unique_ptr<Piece> (*)[8][8] { return &pieces_; }
-  auto currentPlayer() -> Player* { return &currentPlayer_; }
+  auto GetPiece(int x, int y) -> std::optional<Piece> {
+    return cells_.at(x + y * 8).piece;
+  }
+
+ private:
+  std::array<Cell, 8 * 8> cells_;
 };
 
 class Damath {
-  Board board_;
-
  public:
   Damath();
 
-  auto board() -> Board* { return &board_; }
+  auto board() -> Board& { return board_; }
+
+ private:
+  Board board_;
 };
 
 }  // namespace DamathZero::Game
