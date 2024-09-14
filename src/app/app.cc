@@ -1,6 +1,10 @@
-#include "app/app.h"
+module;
 
-#include "game/damath.h"
+#include <SFML/Graphics.hpp>
+
+export module app;
+
+import damath;
 
 namespace DamathZero::App {
 
@@ -54,10 +58,10 @@ static auto Display(sf::RenderWindow* window, Game::Board& board) -> void {
   }
 }
 
-auto Run() -> int {
+export auto Run() -> int {
   Game::Damath game{};
 
-  if (!font.loadFromFile("res/fonts/Akrobat-Black.ttf")) {
+  if (!font.loadFromFile("assets/fonts/Akrobat-Black.ttf")) {
     return EXIT_FAILURE;
   }
 
