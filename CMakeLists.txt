@@ -10,8 +10,26 @@ project(
   LANGUAGES CXX
 )
 
-find_package(SFML REQUIRED COMPONENTS graphics)
+include(FetchContent)
+
+FetchContent_Declare(
+  SFML
+  GIT_REPOSITORY "https://github.com/SFML/SFML.git"
+  GIT_TAG 2.6.x
+)
+FetchContent_MakeAvailable(SFML)
+
+FetchContent_Declare(
+  Torch
+  URL "https://download.pytorch.org/libtorch/cpu/libtorch-macos-arm64-2.4.1.zip"
+)
+FetchContent_MakeAvailable(Torch)
+
+list(APPEND CMAKE_PREFIX_PATH "${torch_SOURCE_DIR}")
+
 find_package(Torch REQUIRED)
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${TORCH_CXX_FLAGS}")
 
 add_executable(${CMAKE_PROJECT_NAME} WIN32 MACOSX_BUNDLE src/main.cc)
 
