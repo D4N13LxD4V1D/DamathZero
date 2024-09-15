@@ -2,6 +2,8 @@ module;
 
 #include <SFML/Graphics.hpp>
 
+#include "utils/utils.h"
+
 export module app;
 
 import damath;
@@ -61,11 +63,11 @@ static auto Display(sf::RenderWindow* window, Game::Board& board) -> void {
 export auto Run() -> int {
   Game::Damath game{};
 
-  if (!font.loadFromFile("assets/fonts/Akrobat-Black.ttf")) {
+  if (!(font.loadFromFile(Utils::resourcePath() / "Akrobat-Black.ttf"))) {
     return EXIT_FAILURE;
   }
 
-  sf::RenderWindow window(sf::VideoMode(800, 800), "damath.ai",
+  sf::RenderWindow window(sf::VideoMode(800, 800), "DamathZero",
                           sf::Style::Close, sf::ContextSettings(24, 8, 4));
 
   sf::View view{sf::FloatRect{0, 0, 800, 800}};
