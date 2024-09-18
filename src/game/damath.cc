@@ -1,14 +1,10 @@
-module;
-
-#include <array>
-#include <cstdint>
-#include <optional>
-
 export module damath;
+
+import std;
 
 namespace DamathZero::Game {
 
-enum class Operation {
+export enum class Operation {
   Plus,
   Minus,
   Times,
@@ -16,12 +12,12 @@ enum class Operation {
 };
 
 export struct Piece {
-  enum class Type : uint8_t {
+  enum class Type {
     Dama,
     Pawn,
   };
 
-  enum class Color : uint8_t {
+  enum class Color {
     Red,
     Blue,
   };
